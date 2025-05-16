@@ -1,7 +1,7 @@
-import { db } from "~/server/db"
+import { api } from "~/trpc/server"
 
 export default async function Home() {
-  const profiles = await db.query.profile.findMany()
+  const profiles = await api.profile.getAll()
 
   return (
     <div>
