@@ -1,3 +1,4 @@
+import { ClerkProvider } from "@clerk/nextjs"
 import { type Metadata } from "next"
 import { Open_Sans } from "next/font/google"
 import "~/styles/globals.css"
@@ -9,14 +10,14 @@ export const metadata: Metadata = {
 
 const openSans = Open_Sans({ subsets: ["latin"] })
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Children) {
   return (
-    <html lang="en" className={`${openSans.className}`}>
-      <body>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <TRPCReactProvider>
+        <html lang="en" className={`${openSans.className}`}>
+          <body>{children}</body>
+        </html>
+      </TRPCReactProvider>
+    </ClerkProvider>
   )
 }

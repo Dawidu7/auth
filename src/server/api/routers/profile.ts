@@ -1,6 +1,8 @@
-import { createTRPCRouter, publicProcedure } from "../trpc"
+import { createTRPCRouter, protectedProcedure } from "../trpc"
 import { db } from "~/server/db"
 
 export const profileRouter = createTRPCRouter({
-  getAll: publicProcedure.query(async () => await db.query.profile.findMany()),
+  getAll: protectedProcedure.query(
+    async () => await db.query.profile.findMany(),
+  ),
 })
