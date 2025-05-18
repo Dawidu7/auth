@@ -1,21 +1,10 @@
-"use client"
-
-import { action } from "./actions"
-import { emailSchema } from "./schemas"
-import { Form, FormButton, FormInput } from "~/components/Form"
+import AuthEntryStep from "./_components/AuthEntryStep"
 
 export default function Join() {
   return (
     <div className="grid h-screen place-items-center bg-gray-200">
-      <div className="rounded-lg bg-white p-4 shadow-lg">
-        <Form action={action} schema={emailSchema}>
-          {form => (
-            <>
-              <FormInput form={form} name="email" label="Email" />
-              <FormButton>Continue with Passwordless</FormButton>
-            </>
-          )}
-        </Form>
+      <div className="w-xs space-y-4 rounded-lg bg-white p-4 shadow-lg">
+        <AuthEntryStep />
       </div>
     </div>
   )
