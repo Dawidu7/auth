@@ -7,6 +7,7 @@ import {
   FormMessage,
 } from "../ui/form"
 import { Input } from "../ui/input"
+import type { JSX } from "react"
 import type { FieldPath, FieldValues, UseFormReturn } from "react-hook-form"
 import { cn } from "~/lib/utils"
 
@@ -14,7 +15,7 @@ type FormInputProps<T extends FieldValues> = {
   form: UseFormReturn<T>
   name: FieldPath<T>
   label: string
-  description?: string
+  description?: JSX.Element | string
   isOptional?: boolean
 } & Omit<React.ComponentProps<typeof Input>, "name" | "form">
 

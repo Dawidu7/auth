@@ -1,5 +1,6 @@
 import { handleSignUpSubmit } from "../actions"
 import { signUpSchema } from "../schemas"
+import PasswordStrength from "./PasswordStrength"
 import { Form, FormButton, FormInput } from "~/components/Form"
 
 export default function SignUpForm() {
@@ -14,6 +15,7 @@ export default function SignUpForm() {
             label="Password"
             type="password"
           />
+          <PasswordStrength value={form.watch("password")} />
           <FormInput
             form={form}
             name="passwordConfirm"
