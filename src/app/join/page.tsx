@@ -2,8 +2,7 @@
 
 import { action } from "./actions"
 import { emailSchema } from "./schemas"
-import { Form, FormInput } from "~/components/Form"
-import { Button } from "~/components/ui/button"
+import { Form, FormButton, FormInput } from "~/components/Form"
 
 export default function Join() {
   return (
@@ -13,7 +12,7 @@ export default function Join() {
           {form => (
             <>
               <FormInput form={form} name="email" label="Email" />
-              <Button type="submit">Continue with Passwordless</Button>
+              <FormButton>Continue with Passwordless</FormButton>
             </>
           )}
         </Form>
