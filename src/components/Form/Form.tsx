@@ -1,6 +1,4 @@
-"use client"
-
-import { Form as FormProvider } from "./ui/form"
+import { Form as FormProvider } from "../ui/form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
   type DefaultValues,
@@ -23,14 +21,13 @@ function createDefaultValues<T extends z.SomeZodObject>(schema: T) {
   )
 }
 
-export function Form<T extends z.SomeZodObject>({
+export default function Form<T extends z.SomeZodObject>({
   action,
   children,
   className,
   schema,
   ...props
 }: FormProps<T>) {
-  createDefaultValues(schema)
   const form = useForm({
     resolver: zodResolver(schema),
     defaultValues: createDefaultValues(schema),
