@@ -1,10 +1,4 @@
-import {
-  SignInButton,
-  SignOutButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-} from "@clerk/nextjs"
+import { SignInButton, SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs"
 import { api } from "~/trpc/server"
 
 async function Profiles() {
@@ -24,7 +18,6 @@ export default async function Home() {
     <>
       <SignedOut>
         <SignInButton />
-        <SignUpButton />
       </SignedOut>
       <SignedIn>
         <SignOutButton />
