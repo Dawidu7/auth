@@ -1,9 +1,15 @@
+import { useAuth } from "../context"
 import { type SignUpFormValues, signUpSchema } from "../schemas"
 import PasswordStrength from "./PasswordStrength"
 import { Form, FormButton, FormInput } from "~/components/Form"
 
 export default function SignUpForm() {
-  async function handleSubmit(values: SignUpFormValues) {}
+  const { setCurrentStep } = useAuth()
+  async function handleSubmit(values: SignUpFormValues) {
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    console.log(values)
+    setCurrentStep("verification")
+  }
 
   return (
     <Form onSubmit={handleSubmit} schema={signUpSchema}>

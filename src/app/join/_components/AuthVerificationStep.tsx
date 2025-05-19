@@ -1,4 +1,5 @@
 import { type VerificationStepSchema, verificationSchema } from "../schemas"
+import AuthStep from "./AuthStep"
 import { Form, FormButton } from "~/components/Form"
 import {
   FormControl,
@@ -21,13 +22,10 @@ export default function AuthVerificationStep() {
   }
 
   return (
-    <div className="grid place-items-center gap-4">
-      <div className="space-y-2 text-center">
-        <h2 className="text-2xl font-bold">OTP Verification</h2>
-        <p className="text-xs font-light">
-          Enter the 6-digit code sent to your email.
-        </p>
-      </div>
+    <AuthStep
+      title="OTP Verification"
+      description="Enter the 6-digit code sent to your email."
+    >
       <Form onSubmit={handleSubmit} schema={verificationSchema}>
         {form => (
           <>
@@ -35,7 +33,7 @@ export default function AuthVerificationStep() {
               control={form.control}
               name="code"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="mx-auto w-fit">
                   <FormControl>
                     <InputOTP
                       maxLength={length}
@@ -61,6 +59,6 @@ export default function AuthVerificationStep() {
           </>
         )}
       </Form>
-    </div>
+    </AuthStep>
   )
 }
