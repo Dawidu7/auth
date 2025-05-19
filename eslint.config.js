@@ -1,11 +1,11 @@
-import { FlatCompat } from "@eslint/eslintrc";
-import tseslint from "typescript-eslint";
+import { FlatCompat } from "@eslint/eslintrc"
 // @ts-ignore -- no types for this plugin
-import drizzle from "eslint-plugin-drizzle";
+import drizzle from "eslint-plugin-drizzle"
+import tseslint from "typescript-eslint"
 
 const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
-});
+})
 
 export default tseslint.config(
   {
@@ -46,6 +46,7 @@ export default tseslint.config(
         "error",
         { drizzleObjectName: ["db", "ctx.db"] },
       ],
+      "@typescript-eslint/no-empty-function": "warn",
     },
   },
   {
@@ -58,4 +59,4 @@ export default tseslint.config(
       },
     },
   },
-);
+)

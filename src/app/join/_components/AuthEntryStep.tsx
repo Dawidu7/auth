@@ -1,5 +1,3 @@
-"use client"
-
 import PasswordlessForm from "./PasswordlessForm"
 import SignInForm from "./SignInForm"
 import SignUpForm from "./SignUpForm"

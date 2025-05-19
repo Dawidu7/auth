@@ -4,7 +4,7 @@ import { Form, FormButton, FormInput } from "~/components/Form"
 
 export default function PasswordlessForm() {
   return (
-    <Form action={handlePasswordlessSubmit} schema={passwordlessSchema}>
+    <Form onSubmit={handlePasswordlessSubmit} schema={passwordlessSchema}>
       {form => (
         <>
           <FormInput form={form} name="email" label="Email" />

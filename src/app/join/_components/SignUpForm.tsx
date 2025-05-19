@@ -1,11 +1,12 @@
-import { handleSignUpSubmit } from "../actions"
-import { signUpSchema } from "../schemas"
+import { type SignUpFormValues, signUpSchema } from "../schemas"
 import PasswordStrength from "./PasswordStrength"
 import { Form, FormButton, FormInput } from "~/components/Form"
 
 export default function SignUpForm() {
+  async function handleSubmit(values: SignUpFormValues) {}
+
   return (
-    <Form action={handleSignUpSubmit} schema={signUpSchema}>
+    <Form onSubmit={handleSubmit} schema={signUpSchema}>
       {form => (
         <>
           <FormInput form={form} name="email" label="Email" />

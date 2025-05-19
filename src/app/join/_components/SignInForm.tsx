@@ -4,7 +4,7 @@ import { Form, FormButton, FormInput } from "~/components/Form"
 
 export default function SignInForm() {
   return (
-    <Form action={handleSignInSubmit} schema={signInSchema}>
+    <Form onSubmit={handleSignInSubmit} schema={signInSchema}>
       {form => (
         <>
           <FormInput form={form} name="email" label="Email" />

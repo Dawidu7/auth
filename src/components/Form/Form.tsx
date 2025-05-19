@@ -9,8 +9,8 @@ import { type z } from "zod"
 import { cn } from "~/lib/utils"
 
 type FormProps<T extends z.SomeZodObject> = {
-  action: (values: z.infer<T>) => void
   children: (form: UseFormReturn<z.infer<T>>) => React.ReactNode
+  onSubmit: (values: z.infer<T>) => void
   schema: T
 } & Omit<React.ComponentProps<"form">, "children" | "action" | "onSubmit">
 
@@ -22,7 +22,7 @@ function createDefaultValues<T extends z.SomeZodObject>(schema: T) {
 }
 
 export default function Form<T extends z.SomeZodObject>({
-  action,
+  onSubmit,
   children,
   className,
   schema,
@@ -38,7 +38,7 @@ export default function Form<T extends z.SomeZodObject>({
       <form
         {...props}
         className={cn("space-y-4", className)}
-        onSubmit={form.handleSubmit(values => action(values))}
+        onSubmit={form.handleSubmit(values => onSubmit(values))}
       >
         {children(form)}
       </form>

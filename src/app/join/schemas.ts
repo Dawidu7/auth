@@ -15,3 +15,6 @@ export const signUpSchema = z.object({
   passwordConfirm: z.string(),
 })
 export type SignUpFormValues = z.infer<typeof signUpSchema>
+
+export const verificationSchema = z.object({ code: z.string().length(6) })
+export type VerificationStepSchema = z.infer<typeof verificationSchema>
