@@ -15,6 +15,7 @@ export default function AuthStep({
         {description && <p className="text-xs font-light">{description}</p>}
       </div>
       {children}
+      <div id="clerk-captcha" />
     </div>
   )
 }

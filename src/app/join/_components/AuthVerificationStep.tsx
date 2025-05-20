@@ -1,5 +1,9 @@
+"use client"
+
+import { useAuth } from "../context"
 import { type VerificationStepSchema, verificationSchema } from "../schemas"
 import AuthStep from "./AuthStep"
+import { useRouter } from "next/navigation"
 import { Form, FormButton } from "~/components/Form"
 import {
   FormControl,
@@ -14,11 +18,28 @@ import {
 } from "~/components/ui/input-otp"
 
 export default function AuthVerificationStep() {
+  const { signUp } = useAuth()
+  const router = useRouter()
   const length = 6
 
-  async function handleSubmit(values: VerificationStepSchema) {
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    console.log(values)
+  async function handleSubmit({ code }: VerificationStepSchema) {
+    if (!signUp?.isLoaded) return
+
+    try {
+      const signUpAttempt = await signUp.signUp.attemptEmailAddressVerification(
+        { code },
+      )
+
+      if (signUpAttempt.status !== "complete") {
+        console.error(JSON.stringify(signUpAttempt, null, 2))
+        return
+      }
+
+      await signUp.setActive({ session: signUpAttempt.createdSessionId })
+      router.push("/")
+    } catch (e) {
+      console.error(JSON.stringify(e, null, 2))
+    }
   }
 
   return (

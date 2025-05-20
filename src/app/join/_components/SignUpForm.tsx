@@ -4,11 +4,25 @@ import PasswordStrength from "./PasswordStrength"
 import { Form, FormButton, FormInput } from "~/components/Form"
 
 export default function SignUpForm() {
-  const { setCurrentStep } = useAuth()
+  const { signUp, setCurrentStep } = useAuth()
+
   async function handleSubmit(values: SignUpFormValues) {
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    console.log(values)
-    setCurrentStep("verification")
+    if (!signUp?.isLoaded) return
+
+    try {
+      await signUp.signUp.create({
+        emailAddress: values.email,
+        password: values.password,
+      })
+
+      await signUp.signUp.prepareEmailAddressVerification({
+        strategy: "email_code",
+      })
+
+      setCurrentStep("verification")
+    } catch (e) {
+      console.error(JSON.stringify(e, null, 2))
+    }
   }
 
   return (
