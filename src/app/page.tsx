@@ -13,7 +13,7 @@ async function Profiles() {
   )
 }
 
-export default async function Home() {
+export default function Home() {
   return (
     <>
       <SignedOut>
